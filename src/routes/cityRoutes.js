@@ -7,7 +7,7 @@ const { validate } = require('../middleware/validate');
 module.exports = () => {
     const router = Router();
 
-    router.get('/', (req, res) => {
+    router.get('/', (_, res) => {
         
         City.getAll().then(cities => {
             return res.json(cities);
@@ -39,7 +39,7 @@ module.exports = () => {
             } else {
                 console.log(err);
             }
-            return res.status(500);
+            return res.sendStatus(500);
         });
     });
 
