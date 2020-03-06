@@ -28,6 +28,10 @@ mongoose.connection.once('open', () => {
 app.use(bodyParser.json());
 app.use(expressValidator());
 
+app.get('/', (_, res) => {
+    return res.sendStatus(200);
+});
+
 app.use('/cities', cityRoutes());
 
 app.on('ready', () => {

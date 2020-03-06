@@ -13,7 +13,7 @@ module.exports = () => {
             return res.json(cities);
         }).catch(err => {
             console.log(err);
-            res.status(500).json({'detail': 'Internal server error'});
+            return res.status(500).json({'detail': 'Internal server error'});
         });
 
     });
