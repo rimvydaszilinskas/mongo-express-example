@@ -11,7 +11,8 @@ module.exports = () => {
         
         City.getAll().then(cities => {
             return res.json(cities);
-        }).catch(_ => {
+        }).catch(err => {
+            console.log(err);
             res.status(500).json({'detail': 'Internal server error'});
         });
 
@@ -35,6 +36,8 @@ module.exports = () => {
         }).catch(err => {
             if (err.errmsg) {
                 return res.status(400).json({'detail': err.errmsg});
+            } else {
+                console.log(err);
             }
             return res.status(500);
         });

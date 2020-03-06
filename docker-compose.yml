@@ -9,6 +9,25 @@ services:
         restart: always
         volumes:
             - mongo_kea_data:/data/db
+
+    app:
+        container_name: app
+        build: .
+        command: npm start
+        depends_on:
+            - db
+        ports:
+            - "3000:3000"
         environment:
-            MONGO_INITDB_ROOT_USERNAME: root
-            MONGO_INITDB_ROOT_PASSWORD: example
+            - MONGO_HOST=db
+            - MONGO_DB=kea
+    
+    mongo-express:
+        image: mongo-express
+        depends_on:
+            - db
+        ports:
+            - "3001:8081"
+
+volumes:
+    mongo_kea_data:
